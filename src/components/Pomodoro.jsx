@@ -1,30 +1,36 @@
 import { useBackground } from '@/context/BackgroundContext';
 import useTimer from '@/hooks/useTimer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaUserAlt, FaSuperpowers } from 'react-icons/fa';
 import { MdOutlineWork } from 'react-icons/md';
 import ProfilesComponent from './ProfilesComponent';
 
-const POMODORO_DURATION_IN_SECONDS = 25 * 60;
-
 function Pomodoro() {
-	const { time, isRunning, isReset, startTimer, stopTimer, resetTimer } =
-		useTimer(POMODORO_DURATION_IN_SECONDS);
-
-	const minutes = Math.floor(time / 60);
-	const seconds = time % 60;
-
 	const [profiles, setProfiles] = useState([
-		{ name: 'Default', icon: <FaSuperpowers /> },
-		{ name: 'Personal', icon: <FaUserAlt /> },
-		{ name: 'Work', icon: <MdOutlineWork /> },
+		{ name: 'Default', icon: <FaSuperpowers />, duration: 25 },
+		{ name: 'Personal', icon: <FaUserAlt />, duration: 10 },
+		{ name: 'Work', icon: <MdOutlineWork />, duration: 45 },
 	]);
 	const [currentProfile, setCurrentProfile] = useState(profiles[0]);
+
+	const {
+		minutes,
+		seconds,
+		isRunning,
+		isReset,
+		startTimer,
+		stopTimer,
+		resetTimer,
+	} = useTimer(currentProfile.duration * 60);
 
 	function handleProfileChange(profile) {
 		setCurrentProfile(profile);
 	}
 	const { backgroundColor } = useBackground();
+
+	useEffect(() => {
+		resetTimer();
+	}, [currentProfile]);
 
 	return (
 		<div

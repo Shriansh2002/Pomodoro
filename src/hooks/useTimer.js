@@ -23,7 +23,7 @@ function useTimer(durationInSeconds) {
                         return prevTime;
                     }
                 });
-            }, 1000);
+            }, INTERVAL_DELAY_IN_MS);
         } else {
             clearInterval(interval);
         }
@@ -48,7 +48,10 @@ function useTimer(durationInSeconds) {
         setBackgroundColor('#4a4e69');
     };
 
-    return { time, isRunning, isReset, startTimer, stopTimer, resetTimer };
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+
+    return { minutes, seconds, isRunning, isReset, startTimer, stopTimer, resetTimer };
 }
 
 export default useTimer;
