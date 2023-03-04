@@ -1,16 +1,25 @@
+// ReactContext
 import { useBackground } from '@/context/BackgroundContext';
+
+// Hooks
 import useTimer from '@/hooks/useTimer';
 import { useEffect, useState } from 'react';
+
+// icons
 import { FaUserAlt, FaSuperpowers } from 'react-icons/fa';
 import { MdOutlineWork } from 'react-icons/md';
+import ButtonsComponent from './ButtonsComponent';
+
+// Components
 import ProfilesComponent from './ProfilesComponent';
+import TimerStateComponent from './TimerStateComponent';
 
 function Pomodoro() {
-	const [profiles, setProfiles] = useState([
+	const profiles = [
 		{ name: 'Default', icon: <FaSuperpowers />, duration: 25 },
 		{ name: 'Personal', icon: <FaUserAlt />, duration: 10 },
 		{ name: 'Work', icon: <MdOutlineWork />, duration: 45 },
-	]);
+	];
 	const [currentProfile, setCurrentProfile] = useState(profiles[0]);
 
 	const {
@@ -34,9 +43,7 @@ function Pomodoro() {
 
 	return (
 		<div
-			style={{
-				backgroundColor: backgroundColor,
-			}}
+			style={{ backgroundColor: backgroundColor }}
 			className="min-h-screen py-36 items-center justify-center"
 		>
 			<div className="max-w-md mx-auto px-6 py-12 bg-gray-100 rounded-lg shadow-lg">
@@ -53,54 +60,17 @@ function Pomodoro() {
 					{minutes.toString().padStart(2, '0')}:
 					{seconds.toString().padStart(2, '0')}
 				</div>
-				<div className="flex justify-center mb-10">
-					<button
-						className={`mr-4 bg-green-500 hover:bg-green-600 text-white py-3 px-5 rounded-full ${
-							isRunning && !isReset
-								? 'opacity-50 cursor-default'
-								: ''
-						}`}
-						onClick={startTimer}
-						disabled={isRunning && !isReset}
-					>
-						Start
-					</button>
-					<button
-						className={`mr-4 bg-red-500 hover:bg-red-600 text-white py-3 px-5 rounded-full ${
-							!isRunning || isReset
-								? 'opacity-50 cursor-default'
-								: ''
-						}`}
-						onClick={stopTimer}
-						disabled={!isRunning || isReset}
-					>
-						Stop
-					</button>
-					<button
-						className={`bg-gray-500 hover:bg-gray-600 text-white py-3 px-5 rounded-full ${
-							isReset ? 'opacity-50 cursor-default' : ''
-						}`}
-						onClick={resetTimer}
-						disabled={isReset}
-					>
-						Reset
-					</button>
-				</div>
-				{!isRunning || isReset ? (
-					<div
-						className={`text-white ${
-							isReset ? 'bg-[#4a4e69]' : 'bg-[#ffa200]'
-						} p-4 rounded-lg mb-6 text-center`}
-					>
-						{isReset ? 'Timer reset!' : 'Timer paused.'}
-					</div>
-				) : (
-					<div
-						className={`bg-[#52b788] text-white p-4 rounded-lg mb-6 text-center`}
-					>
-						Timer running.
-					</div>
-				)}
+
+				<ButtonsComponent
+					startTimer={startTimer}
+					stopTimer={stopTimer}
+					resetTimer={resetTimer}
+					isRunning={isRunning}
+					isReset={isReset}
+				/>
+
+				<TimerStateComponent isRunning={isRunning} isReset={isReset} />
+
 				<ProfilesComponent
 					profiles={profiles}
 					currentProfile={currentProfile}
