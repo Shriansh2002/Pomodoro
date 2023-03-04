@@ -2,6 +2,7 @@ const ProfilesComponent = ({
 	profiles,
 	currentProfile,
 	handleProfileChange,
+	handleAddProfile,
 }) => {
 	return (
 		<div className="flex justify-center mb-4 p-4">
@@ -19,6 +20,12 @@ const ProfilesComponent = ({
 						{profile.icon}
 					</button>
 				))}
+				{/* <button
+					className="pomodoro__add-profile"
+					onClick={() => handleAddProfile('New Profile', null, 30)}
+				>
+					+
+				</button> */}
 			</div>
 		</div>
 	);
