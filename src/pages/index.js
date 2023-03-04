@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import PomodoroTimer from '@/components/Pomodoro';
+import { BackgroundProvider } from '@/context/BackgroundContext';
 
 export default function Home() {
   return (
@@ -11,10 +12,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='my-24'>
+      <BackgroundProvider>
         <PomodoroTimer />
-      </main>
-
+      </BackgroundProvider>
     </>
   );
 }
