@@ -1,3 +1,6 @@
+// Toast Library
+import toast from 'react-hot-toast';
+
 const ButtonsComponent = ({
 	startTimer,
 	stopTimer,
@@ -11,7 +14,16 @@ const ButtonsComponent = ({
 				className={`mr-4 bg-green-500 hover:bg-green-600 text-white py-3 px-5 rounded-full ${
 					isRunning && !isReset ? 'opacity-50 cursor-default' : ''
 				}`}
-				onClick={startTimer}
+				onClick={() => {
+					startTimer();
+					toast.success('Timer Started', {
+						icon: '⏳',
+						style: {
+							borderRadius: '10px',
+							fontWeight: 'bold',
+						},
+					});
+				}}
 				disabled={isRunning && !isReset}
 			>
 				Start
@@ -20,7 +32,16 @@ const ButtonsComponent = ({
 				className={`mr-4 bg-red-500 hover:bg-red-600 text-white py-3 px-5 rounded-full ${
 					!isRunning || isReset ? 'opacity-50 cursor-default' : ''
 				}`}
-				onClick={stopTimer}
+				onClick={() => {
+					stopTimer();
+					toast.success('Timer Stopped', {
+						icon: '⏱️',
+						style: {
+							borderRadius: '10px',
+							fontWeight: 'bold',
+						},
+					});
+				}}
 				disabled={!isRunning || isReset}
 			>
 				Stop
@@ -29,7 +50,16 @@ const ButtonsComponent = ({
 				className={`bg-gray-500 hover:bg-gray-600 text-white py-3 px-5 rounded-full ${
 					isReset ? 'opacity-50 cursor-default' : ''
 				}`}
-				onClick={resetTimer}
+				onClick={() => {
+					resetTimer();
+					toast.success('Timer Reset', {
+						icon: '🔄',
+						style: {
+							borderRadius: '10px',
+							fontWeight: 'bold',
+						},
+					});
+				}}
 				disabled={isReset}
 			>
 				Reset

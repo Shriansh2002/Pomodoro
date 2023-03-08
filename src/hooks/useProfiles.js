@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+// Toast Library
+import toast from 'react-hot-toast';
+
 function useProfiles(defaultProfiles) {
     const [profiles, setProfiles] = useState(defaultProfiles);
     const [currentProfile, setCurrentProfile] = useState(defaultProfiles[0]);
@@ -13,6 +16,9 @@ function useProfiles(defaultProfiles) {
 
     function handleProfileChange(profile) {
         setCurrentProfile(profile);
+        toast.success(`Profile changed to ${profile.name}`, {
+            icon: profile.icon,
+        });
     }
 
     return {
