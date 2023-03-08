@@ -27,3 +27,12 @@ The application should now be available at http://localhost:3000.
 -   Next.js
 -   React Context API
 -   TailwindCSS
+-   HeadlessUI
+-   React Icons
+
+## TODO
+
+-   [ ] Using React Hot Toasts for notifications.
+-   [ ] Add a dark mode toggle.
+-   [ ] Create User Auth ( MongoDB ).
+-   [ ] Add a statistics page to track progress for user.
