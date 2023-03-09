@@ -1,3 +1,6 @@
+// Next
+import Link from 'next/link';
+
 // ReactContext
 import { useBackground } from '@/context/BackgroundContext';
 
@@ -57,6 +60,17 @@ function Pomodoro() {
 			>
 				{!darkMode ? '🌙 DARK' : '☀️ LIGHT'}
 			</button>
+
+			<Link href="/statistics">
+				<button
+					className="absolute top-0 right-24 m-4 p-2 rounded-md shadow-md
+					font-semibold
+					text-gray-100 bg-gray-800 hover:bg-gray-700"
+				>
+					Your Statistics
+				</button>
+			</Link>
+
 			<div
 				className={`max-w-md mx-auto px-6 py-12 ${
 					darkMode ? 'bg-gray-200' : 'bg-[#2B2D42] text-[#F7F7F9]'
