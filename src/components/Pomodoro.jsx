@@ -77,7 +77,12 @@ function Pomodoro() {
 
 				<footer className="text-center text-black text-sm font-semibold mt-4">
 					Created With ❤️ by{' '}
-					<a href="shrianshagarwal.in">Shriansh Agarwal</a>
+					<a
+						href="shrianshagarwal.in"
+						className="text-blue-500 hover:text-blue-600 transition-colors duration-100 underline underline-offset-2 ease-in-out"
+					>
+						Shriansh Agarwal
+					</a>
 				</footer>
 			</div>
 		</div>
