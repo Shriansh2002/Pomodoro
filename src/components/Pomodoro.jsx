@@ -45,14 +45,23 @@ function Pomodoro() {
 			className="h-screen	py-36"
 		>
 			<button
-				className="absolute top-0 right-0 m-4 p-2 rounded-md shadow-md
+				className={`absolute top-0 right-0 m-4 p-2 rounded-md shadow-md
 					font-semibold
-					text-gray-100 bg-gray-800 hover:bg-gray-700"
+					${
+						darkMode
+							? 'bg-gray-400 text-[#0B132B] hover:text-white'
+							: 'bg-[#0B132B] text-white hover:text-gray-300'
+					}
+					`}
 				onClick={() => setDarkMode((ps) => !ps)}
 			>
 				{!darkMode ? '🌙 DARK' : '☀️ LIGHT'}
 			</button>
-			<div className="max-w-md mx-auto px-6 py-12 bg-gray-100 rounded-lg shadow-lg">
+			<div
+				className={`max-w-md mx-auto px-6 py-12 ${
+					darkMode ? 'bg-gray-200' : 'bg-[#2B2D42] text-[#F7F7F9]'
+				}	rounded-lg shadow-lg`}
+			>
 				<h1 className="text-4xl font-bold text-center">
 					Pomodoro App 🍅
 				</h1>
@@ -83,7 +92,7 @@ function Pomodoro() {
 
 				<TimerStateComponent isRunning={isRunning} isReset={isReset} />
 
-				<footer className="text-center text-black text-sm font-semibold mt-4">
+				<footer className="text-center text-sm font-semibold mt-4">
 					Created With ❤️ by{' '}
 					<a
 						href="shrianshagarwal.in"
