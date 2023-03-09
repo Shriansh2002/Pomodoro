@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useBackground } from '../context/BackgroundContext';
 
+// Toast Library
+import toast from 'react-hot-toast';
+
 const INTERVAL_DELAY_IN_MS = 1000;
 
 function useTimer(durationInSeconds) {
@@ -18,8 +21,8 @@ function useTimer(durationInSeconds) {
                     if (prevTime > 0) {
                         return prevTime - 1;
                     } else {
+                        toast.success('Timer is done! 🎉');
                         clearInterval(interval);
-                        console.log('Timer is done! 🎉');
                         return prevTime;
                     }
                 });
