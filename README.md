@@ -29,10 +29,11 @@ The application should now be available at http://localhost:3000.
 -   TailwindCSS
 -   HeadlessUI
 -   React Icons
+-   React Hot Toasts
 
 ## TODO
 
--   [ ] Using React Hot Toasts for notifications.
+-   [x] Using React Hot Toasts for notifications.
 -   [ ] Add a dark mode toggle.
 -   [ ] Create User Auth ( MongoDB ).
 -   [ ] Add a statistics page to track progress for user.
