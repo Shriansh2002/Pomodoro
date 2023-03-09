@@ -33,7 +33,7 @@ function Pomodoro() {
 		resetTimer,
 	} = useTimer(currentProfile.duration * 60);
 
-	const { backgroundColor } = useBackground();
+	const { backgroundColor, darkMode, setDarkMode } = useBackground();
 
 	useEffect(() => {
 		resetTimer();
@@ -42,8 +42,16 @@ function Pomodoro() {
 	return (
 		<div
 			style={{ backgroundColor: backgroundColor }}
-			className="min-h-screen py-36"
+			className="h-screen	py-36"
 		>
+			<button
+				className="absolute top-0 right-0 m-4 p-2 rounded-md shadow-md
+					font-semibold
+					text-gray-100 bg-gray-800 hover:bg-gray-700"
+				onClick={() => setDarkMode((ps) => !ps)}
+			>
+				{!darkMode ? '🌙 DARK' : '☀️ LIGHT'}
+			</button>
 			<div className="max-w-md mx-auto px-6 py-12 bg-gray-100 rounded-lg shadow-lg">
 				<h1 className="text-4xl font-bold text-center">
 					Pomodoro App 🍅

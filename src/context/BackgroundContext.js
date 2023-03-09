@@ -15,7 +15,7 @@ export function BackgroundProvider({ children }) {
     }, [darkMode]);
 
     return (
-        <BackgroundContext.Provider value={{ backgroundColor, setBackgroundColor, setDarkMode }}>
+        <BackgroundContext.Provider value={{ backgroundColor, setBackgroundColor, darkMode, setDarkMode }}>
             {children}
         </BackgroundContext.Provider>
     );
