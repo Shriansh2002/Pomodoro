@@ -87,7 +87,8 @@ function Pomodoro() {
 			</Link>
 
 			{session && session.user ? (
-				<Link href="/profile">
+				<Link href="/statistics">
+					{/* TOOD: in future make it "/profile" and create a new page for it. */}
 					<button
 						className="absolute top-0 right-60 m-4 p-2 rounded-md shadow-md
 					font-semibold
