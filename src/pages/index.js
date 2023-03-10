@@ -2,7 +2,21 @@ import Head from 'next/head';
 import PomodoroTimer from '@/components/Pomodoro';
 import { BackgroundProvider } from '@/context/BackgroundContext';
 
+import { signIn, signOut, useSession } from 'next-auth/react';
+
 export default function Home() {
+  const { data: session } = useSession();
+
+  const handleSignin = (e) => {
+    e.preventDefault();
+    signIn();
+  };
+
+  const handleSignout = (e) => {
+    e.preventDefault();
+    signOut();
+  };
+
   return (
     <>
       <Head>
@@ -13,6 +27,8 @@ export default function Home() {
       </Head>
 
       <BackgroundProvider>
+        {session && <a href="#" onClick={handleSignout} className="btn-signin">Sign out</a>}
+        {!session && <a href="#" onClick={handleSignin} className="btn-signin">Sign in</a>}
         <PomodoroTimer />
       </BackgroundProvider>
     </>

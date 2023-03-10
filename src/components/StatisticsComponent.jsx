@@ -1,5 +1,11 @@
+// React
+import { useEffect, useState } from 'react';
+
 // Next
 import Link from 'next/link';
+
+// NextAuth
+import { useSession } from 'next-auth/react';
 
 // Components
 import SessionStatistics from '@/components/SessionStatistics';
@@ -9,6 +15,16 @@ import ChartComponentStats from '@/components/ChartComponentStats';
 import { HiHome } from 'react-icons/hi';
 
 const StatisticsComponent = () => {
+	const { data: session } = useSession();
+
+	const [userData, setUserData] = useState({});
+
+	useEffect(() => {
+		if (session && session.user) {
+			setUserData(session.user);
+		}
+	}, []);
+
 	const GraphData = {
 		labels: [
 			'January',
@@ -40,7 +56,19 @@ const StatisticsComponent = () => {
 					<h1 className="text-3xl font-bold text-gray-800">
 						Pomodoro Statistics
 					</h1>
-					<div></div>
+					<div>
+						{userData && (
+							<div className="flex items-center gap-2">
+								<p className="text-gray-800">
+									Welcome, {userData.name}
+								</p>
+								<img
+									src={userData.image}
+									className="rounded-full w-10 h-10"
+								/>
+							</div>
+						)}
+					</div>
 				</div>
 			</header>
 			<SessionStatistics />
