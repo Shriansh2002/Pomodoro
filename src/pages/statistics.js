@@ -1,7 +1,11 @@
+// Next
 import Head from 'next/head';
+
+// Context
 import { BackgroundProvider } from '@/context/BackgroundContext';
-import SessionStatistics from '@/components/SessionStatistics';
-import ChartComponentStats from '@/components/ChartComponentStats';
+
+// Components
+import StatisticsComponent from '@/components/StatisticsComponent';
 
 export default function Statistics() {
     return (
@@ -14,16 +18,7 @@ export default function Statistics() {
             </Head>
 
             <BackgroundProvider>
-                <div className="bg-gray-100 min-h-screen">
-                    <header className="py-4 bg-white">
-                        <div className="container mx-auto">
-                            <h1 className="text-2xl font-bold text-gray-800">Your Statistics</h1>
-                        </div>
-                    </header>
-                    <SessionStatistics />
-
-                    <ChartComponentStats />
-                </div>
+                <StatisticsComponent />
             </BackgroundProvider>
         </>
     );

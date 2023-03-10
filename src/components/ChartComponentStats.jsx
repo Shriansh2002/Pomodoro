@@ -1,37 +1,11 @@
-import React from 'react';
+import { useEffect } from 'react';
 import Chart from 'chart.js';
 
-export default function CardLineChart() {
-	React.useEffect(() => {
+export default function CardLineChart({ data }) {
+	useEffect(() => {
 		var config = {
 			type: 'line',
-			data: {
-				labels: [
-					'January',
-					'February',
-					'March',
-					'April',
-					'May',
-					'June',
-					'July',
-				],
-				datasets: [
-					{
-						label: new Date().getFullYear(),
-						backgroundColor: '#3182ce',
-						borderColor: '#3182ce',
-						data: [65, 78, 66, 44, 56, 67, 75],
-						fill: false,
-					},
-					{
-						label: new Date().getFullYear() - 1,
-						fill: false,
-						backgroundColor: '#edf2f7',
-						borderColor: '#edf2f7',
-						data: [40, 68, 86, 74, 56, 60, 87],
-					},
-				],
-			},
+			data: data,
 			options: {
 				maintainAspectRatio: false,
 				responsive: true,
@@ -106,27 +80,19 @@ export default function CardLineChart() {
 		var ctx = document.getElementById('line-chart').getContext('2d');
 		window.myLine = new Chart(ctx, config);
 	}, []);
+
 	return (
-		<>
-			<div class="relative flex container mx-auto p-8 flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-gray-700">
-				<div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-					<div class="flex flex-wrap items-center">
-						<div class="relative w-full max-w-full flex-grow flex-1">
-							<h6 class="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
-								Overview
-							</h6>
-							<h2 class="text-white text-xl font-semibold">
-								Sales value
-							</h2>
-						</div>
-					</div>
-				</div>
-				<div class="p-4 flex-auto">
+		<main className="container mx-auto p-8">
+			<h2 className="text-xl font-semibold text-gray-800 mb-4 px-4">
+				Productivity Statistics
+			</h2>
+			<div class="container mx-auto flex-col break-words shadow-lg rounded bg-gray-900">
+				<div class="p-5 flex-auto">
 					<div class="relative h-96">
 						<canvas id="line-chart"></canvas>
 					</div>
 				</div>
 			</div>
-		</>
+		</main>
 	);
 }
