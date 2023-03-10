@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 // NextAuth
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 // Components
 import SessionStatistics from '@/components/SessionStatistics';
@@ -22,8 +22,10 @@ const StatisticsComponent = () => {
 	useEffect(() => {
 		if (session && session.user) {
 			setUserData(session.user);
+		} else {
+			setUserData({});
 		}
-	}, []);
+	});
 
 	const GraphData = {
 		labels: [
@@ -46,6 +48,11 @@ const StatisticsComponent = () => {
 		],
 	};
 
+	function handleLogOut(e) {
+		e.preventDefault();
+		signOut();
+	}
+
 	return (
 		<div className="bg-gray-100 min-h-screen">
 			<header className="bg-white shadow-sm py-4">
@@ -56,8 +63,8 @@ const StatisticsComponent = () => {
 					<h1 className="text-3xl font-bold text-gray-800">
 						Pomodoro Statistics
 					</h1>
-					<div>
-						{userData && (
+					<div className="flex gap-2">
+						{session && session.user && (
 							<div className="flex items-center gap-2">
 								<p className="text-gray-800">
 									Welcome, {userData.name}
@@ -68,12 +75,35 @@ const StatisticsComponent = () => {
 								/>
 							</div>
 						)}
+						{session && session.user && (
+							<button
+								onClick={handleLogOut}
+								className="bg-gray-800 text-white px-4 py-2 rounded-md"
+							>
+								Logout
+							</button>
+						)}
 					</div>
 				</div>
 			</header>
-			<SessionStatistics />
 
-			<ChartComponentStats data={GraphData} />
+			{session && session.user ? (
+				<>
+					<SessionStatistics />
+					<ChartComponentStats data={GraphData} />
+				</>
+			) : (
+				<main className="container mx-auto p-8 py-52 m-auto text-center">
+					<p className="text-2xl font-bold text-gray-800  ">
+						You need to be logged in to view this page.
+					</p>
+					<Link href="/api/auth/signin">
+						<button className="bg-gray-800 text-white px-4 py-2 my-4 rounded-md">
+							Back to Login
+						</button>
+					</Link>
+				</main>
+			)}
 		</div>
 	);
 };
