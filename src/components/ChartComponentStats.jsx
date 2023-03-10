@@ -86,10 +86,12 @@ export default function CardLineChart({ data }) {
 			<h2 className="text-xl font-semibold text-gray-800 mb-4 px-4">
 				Productivity Statistics
 			</h2>
-			<div class="container mx-auto flex-col break-words shadow-lg rounded bg-gray-900">
-				<div class="p-5 flex-auto">
-					<div class="relative h-96">
-						<canvas id="line-chart"></canvas>
+			<div className="p-4">
+				<div class="container mx-auto flex-col break-words shadow-lg rounded bg-gray-900">
+					<div class="p-5 flex-auto">
+						<div class="relative h-96">
+							<canvas id="line-chart"></canvas>
+						</div>
 					</div>
 				</div>
 			</div>
