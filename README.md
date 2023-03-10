@@ -35,5 +35,5 @@ The application should now be available at http://localhost:3000.
 
 -   [x] Using React Hot Toasts for notifications.
 -   [x] Add a dark mode toggle.
--   [ ] Create User Auth ( MongoDB ).
--   [ ] Add a statistics page to track progress for user.
+-   [x] Create User Auth ( NextAuth + GoogleAuth ).
+-   [x] Add a statistics page to track progress for user.
