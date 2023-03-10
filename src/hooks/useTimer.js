@@ -22,6 +22,7 @@ function useTimer(durationInSeconds) {
                         return prevTime - 1;
                     } else {
                         toast.success('Timer is done! 🎉');
+                        resetTimer();
                         clearInterval(interval);
                         return prevTime;
                     }
